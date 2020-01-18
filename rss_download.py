@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+import sys
 import urllib.request, urllib.parse
 import xml.etree.ElementTree as ET
 
@@ -31,6 +32,9 @@ def download_file(url, target_path):
 
 
 feed = download_feed(feed_url)
+if len(feed) == 0:
+    print('Empty feed.')
+    sys.exit()
 
 links = extract_links(feed)
 print('Link count:', len(links))
